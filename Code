@@ -6,8 +6,10 @@ let bubbleD = [];
 //Create variables for a cloud
 let cloudAmount = 2;
 let cloudX = [];
-let cloudY = 200;
+let cloudY = 175;
 let cloudD = 100;
+
+//Make some palm trees, nothing fancy, unless you want to simulate wind
 
 function setup() {
   createCanvas(400, 400);
@@ -26,10 +28,9 @@ function setup() {
 
 function draw() {
   frameRate(60);
-  
   summer();
-  Summer_animatedBubbles();
-  Summer_animatedCloud();
+  
+  //Look up how to put the cloud behind the bubbles
 }
 
 function summer() {
@@ -64,6 +65,11 @@ function summer() {
   fill(205, 178, 128);
   circle(25, 325, 5);
   noFill();
+  
+  Summer_animatedBubbles();
+  Summer_animatedCloud();
+  Summer_nature();
+  Summer_trees();
 }
 
 function Summer_animatedBubbles() {
@@ -85,16 +91,40 @@ function Summer_animatedCloud() {
       color(255, 150, 0),
       color(200, 100, 0),
       color(100),
+      color(100),
       color(0, 25, 120),
       color(0, 75, 164),
     ]
   });
   noStroke();
 for (let i2 = 0; i2 < cloudAmount; i2++) {
-  cloudX[i2] += 1;
-  if (cloudX[i2] > 450) cloudX[i2] = -cloudD;
+  cloudX[i2] += .5;
+  if (cloudX[i2] > 750) cloudX[i2] = -cloudD;
   ellipse(cloudX[i2], cloudY, cloudD, 50);
+  }
 }
+
+function Summer_nature() {
+  fill('brown');
+  arc(100,375,100,75, -3.15, 0);
+  arc(50,375,100,50, -3.15, 0);
+  arc(50,300,75,150, -3.15, 0);
+  arc(300,325,100,75, -3.15, 0);
+  arc(350,325,100,50, -3.15, 0);
+}
+
+function Summer_trees() {
+  fill('rgb(165,78,42)');
+  rect(0,100,25,300);
+  rect(375,125,25,200);
+  
+  fill('green');
+  arc(50,100,150,100, -3.15, -270);
+  arc(375,125,150,100, -3.15, -270);
+  
+  fill('beige');
+  circle(30,110,25);
+  circle(375,130,25);
 }
 
 
@@ -183,9 +213,5 @@ function spring() {
   
   
 } //End spring
-
-
-
-
 
 
