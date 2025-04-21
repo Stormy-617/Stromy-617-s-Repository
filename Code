@@ -1,18 +1,6 @@
-let bubblesAmount = 50;
-let bubbleX = [];
-let bubbleY = [];
-let bubbleD = [];
-
-//Create variables for a cloud
-let cloudAmount = 2;
-let cloudX = [];
-let cloudY = 175;
-let cloudD = 100;
-
-//Make some palm trees, nothing fancy, unless you want to simulate wind
-
 function setup() {
   createCanvas(400, 400);
+  
   // Create bubbles with random positions and sizes
   for (let i = 0; i < bubblesAmount; i++) {
     bubbleX[i] = random(0, 400);
@@ -28,10 +16,51 @@ function setup() {
 
 function draw() {
   frameRate(60);
-  summer();
-  
-  //Look up how to put the cloud behind the bubbles
+  start();
 }
+
+let isStartActive = false;
+
+function start() {
+  
+  //Summer button visual
+  strokeWeight(0);
+  fill(255);
+  rect(0,0,400,400)
+  noFill();
+  
+  //Summer Button box
+  fill('red')
+  rect(150,50,100,75);
+  noFill(0);
+  fill(255);
+  textSize(20);
+  text('Summer', 162, 94);
+  
+  //Interaction for summer
+  if (summerIsActive == true) {
+    summer();
+} if (mouseIsPressed && mouseX >= 150 && mouseX <= 250 && mouseY >= 50 && mouseY <=100) {
+      summerIsActive = true;
+  }
+}
+
+//Summer Code
+
+//All code relating to summer image
+let summerIsActive = false;
+
+//Create variables for bubbles
+let bubblesAmount = 50;
+let bubbleX = [];
+let bubbleY = [];
+let bubbleD = [];
+
+//Create variables for a cloud
+let cloudAmount = 2;
+let cloudX = [];
+let cloudY = 175;
+let cloudD = 100;
 
 function summer() {
   strokeWeight(0);
@@ -70,6 +99,17 @@ function summer() {
   Summer_animatedCloud();
   Summer_nature();
   Summer_trees();
+  
+  fill(0);
+  rect(0,0,50,40);
+  
+  fill(255);
+  textSize(15);
+  text('Exit', 12, 25);
+  
+  if (mouseIsPressed && mouseX >= 0 && mouseX <= 50 && mouseY >= 0 && mouseY <= 40) {
+    summerIsActive = false;
+  }
 }
 
 function Summer_animatedBubbles() {
@@ -126,6 +166,8 @@ function Summer_trees() {
   circle(30,110,25);
   circle(375,130,25);
 }
+
+//Fall Code
 
 
 
@@ -213,5 +255,9 @@ function spring() {
   
   
 } //End spring
+
+
+
+
 
 
