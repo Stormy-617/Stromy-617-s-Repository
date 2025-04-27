@@ -1,6 +1,5 @@
 function setup() {
   createCanvas(400, 400);
-  
   // Create bubbles with random positions and sizes
   for (let i = 0; i < bubblesAmount; i++) {
     bubbleX[i] = random(0, 400);
@@ -30,6 +29,7 @@ function start() {
   noFill();
   
   //Summer Button box
+  strokeWeight(5);
   fill('red')
   rect(150,50,100,75);
   noFill(0);
@@ -37,13 +37,28 @@ function start() {
   textSize(20);
   text('Summer', 162, 94);
   
+  strokeWeight(5);
+  fill('orange');
+  rect(250, 150, 100, 75);
+  noFill();
+  fill(255);
+  textSize(20);
+  text('Fall', 282, 195);
+  
   //Interaction for summer
   if (summerIsActive == true) {
     summer();
 } if (mouseIsPressed && mouseX >= 150 && mouseX <= 250 && mouseY >= 50 && mouseY <=100) {
       summerIsActive = true;
-  }
-}
+  }  
+  
+  if (fallIsActive == true) {
+    fall();
+  } if (mouseIsPressed && mouseX >= 250 && mouseX <= 350 && mouseY >= 150 && mouseY <= 225) {
+      fallIsActive = true;
+  } 
+
+} //End Start
 
 //Summer Code
 
@@ -114,7 +129,6 @@ function summer() {
 
 function Summer_animatedBubbles() {
   fill(255, 100);
-  noStroke();
   for (let i = 0; i < bubblesAmount; i++) {
     bubbleY[i] += random(-1.5, -0.5);
     if (bubbleY[i] < -5) bubbleY[i] = height; //This resets back to floor when touching HEIGHT
@@ -136,7 +150,6 @@ function Summer_animatedCloud() {
       color(0, 75, 164),
     ]
   });
-  noStroke();
 for (let i2 = 0; i2 < cloudAmount; i2++) {
   cloudX[i2] += .5;
   if (cloudX[i2] > 750) cloudX[i2] = -cloudD;
@@ -146,11 +159,11 @@ for (let i2 = 0; i2 < cloudAmount; i2++) {
 
 function Summer_nature() {
   fill('brown');
-  arc(100,375,100,75, -3.15, 0);
-  arc(50,375,100,50, -3.15, 0);
-  arc(50,300,75,150, -3.15, 0);
-  arc(300,325,100,75, -3.15, 0);
-  arc(350,325,100,50, -3.15, 0);
+  arc(100,375,100,75, -3.14, 0);
+  arc(50,375,100,50, -3.14, 0);
+  arc(50,300,75,150, -3.14, 0);
+  arc(300,325,100,75, -3.14, 0);
+  arc(350,325,100,50, -3.14, 0);
 }
 
 function Summer_trees() {
@@ -169,58 +182,104 @@ function Summer_trees() {
 
 //Fall Code
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//All code relating to fall
+fallIsActive = false;
 
 function fall() {
-    //Gradient Backdrop
+  strokeWeight(0);
+  fillGradient('linear', {
+    from: [300, -100],
+    to: [300, 400],
+    steps: [
+      color(0, 100, 150),
+      color(255, 200, 0),
+      color(0, 100, 150),
+    ]
+  });
+  rect(0, 0, 400, 275);
+  
   fillGradient('radial', {
-    from : [200, 200, 0], // x, y, radius
-    to : [200, 200, 200], // x, y, radius
-    steps : [
-        color(255),
-        color(255, 0, 0),
-        color(0),
-    ] // Array of p5.color objects or arrays containing [p5.color Object, Color Stop (0 to 1)]
+  from: [150, 120, 0],
+  to: [150, 120, 75],
+  steps: [
+    color(255),
+    color(255, 200, 0),
+    color(255, 205, 0),
+    color(255)
+  ]
 });
-  square(-100, -100, 600, 600);
-} //End fall()
+  circle(150, 120, 100);
+  
+  fill(100,25,0);
+  rect(0,275,400,125);
+
+  Fall_mountains();
+  
+  fill(0);
+  rect(0,0,50,40);
+  
+  fill(255);
+  textSize(15);
+  text('Exit', 12, 25);
+  
+  if (mouseIsPressed && mouseX >= 0 && mouseX <= 50 && mouseY >= 0 && mouseY <= 40) {
+    fallIsActive = false;
+  }
+}
+
+function Fall_mountains() {
+  strokeWeight(0);
+  fill(50,0,50);
+  arc(50,275,200,400,-3.14,0);
+  arc(200,275,200,300,-3.14,0);
+  arc(325,275,200,450,-3.14,0);
+  noFill();
+}
+
+//Make a lake in the valley
+
+//Add trees overlay
+
+//A falling triangle leaves
+
+//Maybe add some pumpkins
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function winter() {
     //Gradient Backdrop
