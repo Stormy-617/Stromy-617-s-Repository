@@ -1,5 +1,6 @@
 function setup() {
   createCanvas(400, 400);
+  //For Summer
   // Create bubbles with random positions and sizes
   for (let i = 0; i < bubblesAmount; i++) {
     bubbleX[i] = random(0, 400);
@@ -10,6 +11,21 @@ function setup() {
   for (let i2 = 0; i2 < cloudAmount; i2++) {
     cloudX[i2] = 0;
     cloudY[i2] = 0;
+  }
+  
+  //For Fall
+  for (let i = 0; i < leafCount; i++) {
+  leavesX[i] = random(0, 100);
+  leavesY[i] = random(125, 225);
+  leavesD[i] = random(10, 25);
+  leavesRed[i] = random(200, 255);
+  leavesOrange[i] = random(50, 180);
+  }
+  
+  for (let i3 = 0; i3 < leafAmount; i3++) {
+    leafX[i3] = random(0,400);
+    leafY[i3] = random(0,400);
+    leafZ[i3] = random(0,400);
   }
 }
 
@@ -29,7 +45,7 @@ function start() {
   noFill();
   
   //Summer Button box
-  strokeWeight(5);
+  strokeWeight(0);
   fill('red')
   rect(150,50,100,75);
   noFill(0);
@@ -37,7 +53,7 @@ function start() {
   textSize(20);
   text('Summer', 162, 94);
   
-  strokeWeight(5);
+  strokeWeight(0);
   fill('orange');
   rect(250, 150, 100, 75);
   noFill();
@@ -185,6 +201,18 @@ function Summer_trees() {
 //All code relating to fall
 fallIsActive = false;
 
+let leafCount = 100;
+let leavesX = [];
+let leavesY = [];
+let leavesD = [];
+let leavesRed = [];
+let leavesOrange = [];
+
+let leafAmount = 50;
+let leafX = [];
+let leafY = [];
+let leafZ = [];
+
 function fall() {
   strokeWeight(0);
   fillGradient('linear', {
@@ -210,10 +238,22 @@ function fall() {
 });
   circle(150, 120, 100);
   
-  fill(100,25,0);
+fillGradient('linear', {
+  from: [200, 200, 0],
+  to: [200, 425, 400],
+  steps: [
+    color(0),
+    color(100, 50, 0),
+    color(255, 200,0),
+  ]
+});
   rect(0,275,400,125);
 
   Fall_mountains();
+  Fall_trees();
+  Fall_leaves();
+  Fall_pumpkin();
+  strokeWeight(0)
   
   fill(0);
   rect(0,0,50,40);
@@ -229,23 +269,71 @@ function fall() {
 
 function Fall_mountains() {
   strokeWeight(0);
-  fill(50,0,50);
+  fill(100,50,0);
   arc(50,275,200,400,-3.14,0);
   arc(200,275,200,300,-3.14,0);
   arc(325,275,200,450,-3.14,0);
   noFill();
 }
 
-//Make a lake in the valley
-
 //Add trees overlay
+function Fall_trees() {
+  fill(150,75,0)
+  rect(25,150,25,250);
+  fill(150,75,0);
+  rect(350,150,10,150);
+  strokeWeight(10);
+  stroke(150,75,0);
+  line(357,150,300,125);
+  line(357,150,400,100);
+  
+  strokeWeight(0);
+  for (let i = 0; i < leafCount; i++) {
+    fill(leavesRed[i], leavesOrange[i], 0);
+    circle(leavesX[i], leavesY[i], leavesD[i]);
+  }
+}
 
-//A falling triangle leaves
+function Fall_leaves() {
+  for (let i = 0; i < leafAmount; i++) {
+    // Simulate falling
+    leafY[i] += 1 + random(0.5);
+    leafX[i] += sin(frameCount * 0.05 + i) * 0.5; //
+
+    if (leafY[i] > height) {
+      leafY[i] = random(-50, 0);
+      leafX[i] = random(0, width);
+    }
+
+    fill(leavesRed[i], leavesOrange[i], 0);
+    ellipse(leafX[i], leafY[i], 10, 6);
+  }
+  //Created with ai, but I added random colors to the leaves
+}
 
 //Maybe add some pumpkins
+function Fall_pumpkin() {
+  fill(255,100,0);
+  circle(100,350,50)
+  noFill();
+  strokeWeight(10);
+  stroke(150,75,0);
+  line(100,330,100,325);
+  noStroke();
+  
+  fill(255,100,0);
+  circle(250,300,30)
+  noFill();
+  strokeWeight(8);
+  stroke(150,75,0);
+  line(250,290,250,285);
+  noStroke();
+}
 
+//Winter code
 
-
+//All code relating to winter
+winterIsActive = false;
 
 
 
