@@ -27,7 +27,14 @@ function setup() {
     leafY[i3] = random(0,400);
     leafZ[i3] = random(0,400);
   }
-}
+  
+  //For Winter
+  for (let i4 = 0; i4 < leafAmount; i4++) {
+    snowflakeX[i4] = random(0,400);
+    snowflakeY[i4] = random(0,400);
+  }
+  
+} //Setup end
 
 function draw() {
   frameRate(60);
@@ -53,6 +60,7 @@ function start() {
   textSize(20);
   text('Summer', 162, 94);
   
+  //Fall Button Box
   strokeWeight(0);
   fill('orange');
   rect(250, 150, 100, 75);
@@ -60,6 +68,15 @@ function start() {
   fill(255);
   textSize(20);
   text('Fall', 282, 195);
+  
+  //Winter Button Box
+  strokeWeight(0);
+  fill('cyan');
+  rect(150, 250, 100, 75);
+  noFill();
+  fill(255);
+  textSize(20);
+  text('Winter', 172, 294);
   
   //Interaction for summer
   if (summerIsActive == true) {
@@ -72,6 +89,12 @@ function start() {
     fall();
   } if (mouseIsPressed && mouseX >= 250 && mouseX <= 350 && mouseY >= 150 && mouseY <= 225) {
       fallIsActive = true;
+  }
+  
+  if (winterIsActive == true) {
+    winter();
+  } if (mouseIsPressed && mouseX >= 150 && mouseX <= 250 && mouseY >= 250 && mouseY <= 325) {
+      winterIsActive = true;
   } 
 
 } //End Start
@@ -335,56 +358,113 @@ function Fall_pumpkin() {
 //All code relating to winter
 winterIsActive = false;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+let snowAmount = 200;
+let snowflakeX = [];
+let snowflakeY = [];
+let snowflakeD = 5;
 
 function winter() {
-    //Gradient Backdrop
-  fillGradient('radial', {
-    from : [200, 200, 0], // x, y, radius
-    to : [200, 200, 200], // x, y, radius
-    steps : [
-        color(255),
-        color(255, 0, 0),
-        color(0),
-    ] // Array of p5.color objects or arrays containing [p5.color Object, Color Stop (0 to 1)]
-});
-  square(-100, -100, 600, 600);
+  strokeWeight(0);
+  fillGradient('linear', {
+    from: [200, 50],
+    to: [200, 400],
+    steps: [
+      color(0),
+      color(155),
+      color(255),
+    ]
+  });
+  rect(0, 0, 400, 400);
   
+  fill(255);
+  rect(0,300,400,100);
   
+  //Trees
+  fill("rgb(126,33,33)");
+  rect(50,0,20,400);
   
-} //End winter()
+  fill("rgb(126,33,33)");
+  rect(200,-400,20,750);
+  
+  fill("rgb(126,33,33)");
+  rect(350,0,20,750);
+  
+  strokeWeight(10);
+  stroke("rgb(126,33,33)");
+  line(60,200,100,100);
+  
+  strokeWeight(10);
+  stroke("rgb(126,33,33)");
+  line(205,250,150,100);
+  
+  strokeWeight(10);
+  stroke("rgb(126,33,33)");
+  line(205,200,250,100);
+  
+  strokeWeight(10);
+  stroke("rgb(126,33,33)");
+  line(350,200,300,100);
+  noStroke();
+  
+  Winter_animatedSnow();
+  
+  fill(0);
+  rect(0,0,50,40);
+  fill(255);
+  textSize(15);
+  text('Exit', 12, 25);
+  
+  if (mouseIsPressed && mouseX >= 0 && mouseX <= 50 && mouseY >= 0 && mouseY <= 40) {
+    winterIsActive = false;
+  }
+}
+
+function Winter_animatedSnow(){
+  for (let i4 = 0; i4 < snowAmount; i4++) {
+    snowflakeY[i4] += 1 + random(1.0);
+    snowflakeX[i4] += sin(frameCount * 0.05 + i4) * 0.5;
+    if (snowflakeY[i4] > height) {
+      snowflakeY[i4] = random(-50, 0);
+      snowflakeX[i4] = random(0, width);
+    }
+    fill(255);
+    ellipse(snowflakeX[i4], snowflakeY[i4], snowflakeD,snowflakeD);
+  } //End Loop
+}
+
+//Add snowman
+
+//Add lamp
+
+//Add park bench
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function spring() {
     //Gradient Backdrop
