@@ -249,6 +249,8 @@ function fall() {
   });
   rect(0, 0, 400, 275);
   
+  Fall_leaves();
+  
   fillGradient('radial', {
   from: [150, 120, 0],
   to: [150, 120, 75],
@@ -376,6 +378,8 @@ function winter() {
   });
   rect(0, 0, 400, 400);
   
+  Winter_animatedSnow();
+  
   fill(255);
   rect(0,300,400,100);
   
@@ -432,59 +436,7 @@ function Winter_animatedSnow(){
   } //End Loop
 }
 
-//Add snowman
-
-//Add lamp
-
-//Add park bench
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function spring() {
-    //Gradient Backdrop
-  fillGradient('radial', {
-    from : [200, 200, 0], // x, y, radius
-    to : [200, 200, 200], // x, y, radius
-    steps : [
-        color(255),
-        color(255, 0, 0),
-        color(0),
-    ] // Array of p5.color objects or arrays containing [p5.color Object, Color Stop (0 to 1)]
-});
-  square(-100, -100, 600, 600);
-  
-  
-  
-} //End spring
-
-
-
-
-
-
+/*Notes:
+- Didn't make the spring scene due to time
+- Used to have a snowman in the winter biome, but forgot to save it.
+*/ 
